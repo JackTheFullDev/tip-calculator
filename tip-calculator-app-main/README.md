@@ -2,6 +2,9 @@
 
 ![Design preview for the Tip calculator app coding challenge](./design/desktop-preview.jpg)
 
+One of the funniest app to develop web skills there is a lot of feature to programming , also great opportunity to fall into a various traps.
+Level junior .
+
 ## Welcome! 👋
 
 Thanks for checking out this front-end coding challenge.
