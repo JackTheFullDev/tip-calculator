@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    :root
+    {
+
+--Strong--cyan: hsl(172, 67%, 45%);
+
+--Very--dark--cyan: hsl(183, 100%, 15%);
+--Dark--grayish--cyan: hsl(186, 14%, 43%);
+--Grayish--cyan: hsl(184, 14%, 56%);
+--Light--grayish--cyan: hsl(185, 41%, 84%);
+--Very--light--grayish--cyan: hsl(189, 41%, 97%);
+--White: hsl(0, 0%, 100%);
+    }
+    body
+    {
+      font-family: 'Space Mono', monospace;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background-color: var(--Light--grayish--cyan);
+    }
+    .main-section
+    {
+      width: 650px;
+      height: 350px;
+      background-color: var(--White);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .left-content
+    {
+      width: 50%;
+      height: 90%;
+      display: flex;
+      flex-direction: column;
+      gap:25px;
+    }
+    .left-content,.right-content
+    {
+      margin: 20px;
+    }
+  .right-content
+  {
+    width: 50%;
+    height: 90%;
+    background-color: var(--Very--dark--cyan);
+    border-radius: 20px;
+  }
+  .tip-amount,.total-amount
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0px 10px -50px 17px;
+  }
+  .tip-amount-p p
+  {
+    margin:0px;
+  }
+  .button-section
+  {
+    display: flex;
+    justify-content: center;
+    margin-top: 130px;
+    
+  }
+  
+#reset-btn
+  {
+    width: 75%;
+    padding: 8px;
+    border-radius: 5px;
+    border-style: none;
+    background-color: hsl(172, 67%, 65%);
+    color: var(--Dark--grayish--cyan);
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  #reset-btn:disabled
+  {
+    background-color:  hsl(183, 100%, 20%);
+    color: var(--Dark--grayish--cyan);
+  }
+  .tip-p{
+    color: var(--White);
+    font-size: 13px;
+  }
+  .person-p
+  {
+    color:var(--Grayish--cyan);
+    font-size: 12px;
+  }
+  .dollars
+  {
+    font-size:33px;
+    color: var(--Strong--cyan);
+  }
+  
+  #dollar-input,#people-input
+  {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border-style: none;
+    outline:none;
+    background-color: hsl(184, 14%, 86%);
+    position: relative;
+    margin-top: 20px;
+    text-align: right;
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    padding-right: 10px;
+    
+  }
+  #dollar-icon
+{
+  position: absolute;
+  left:30px;
+  top:40px;
+  z-index: 1;
+  color: var(--Grayish--cyan);
+}
+ #bill-p
+ {
+  position: absolute;
+  top:5px;
+  color:var(--Grayish--cyan);
+  font-size: 13px;
+ }
+ .button-section-left
+ {
+display: grid;
+  grid-template-columns: repeat(3,1fr);
+    grid-gap:10px;
+  
+ }
+ .button-section-left button, input
+ {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  border-radius: 5px;
+  border-style: none;;
+  outline: none;
+  font-size:16px;
+  
+ }
+ .button-section-left button
+ {
+  background-color: var(--Very--dark--cyan);
+  color:white;
+  padding: 7px;
+ }
+ .button-section-left input
+ {
+  background-color:  hsl(184, 14%, 86%);
+ }
+ #selected-tip
+ {
+  color:var(--Grayish--cyan);
+  font-size: 13px;
+  margin-bottom: 10px;
+ }
+ 
+#people-input
+{
+ margin: 0;
+ position: relative;
+}
+#person-icon
+{
+  position: absolute;
+  left: 30px;
+  bottom: 60px;
+  color: var(--Grayish--cyan);
+  
+}
+ #nr-people-p
+ {
+  margin-bottom: 0;
+  color:var(--Grayish--cyan);
+  font-size: 13px;
+ }
+ .button-section-left button,input
+ {
+  cursor: pointer;
+  
+ }
+ input:focus,#dollar-input:focus,#people-input:focus
+ {
+border: 3px solid var(--Strong--cyan);
+ }
+ 
+.button-section-left button:focus
+{
+  background-color: hsl(172, 67%, 45%);
+}
+
+ @media only screen and (max-width:600px)
+ {
+  .main-section
+{
+  flex-direction: column;
+  height: 600px;
+  width: 400px;
+  gap:0px;
+}
+.left-content
+{
+  width: 70%;
+  height: 45%;
+}
+.right-content
+{
+ width: 70%;
+ height: 230px;
+}
+#dollar-icon
+{
+  left: 62px;
+  top:43px;
+  
+}
+#person-icon
+{
+  left:65px;
+  top:46%;
+}
+.button-section
+{
+  margin-top: 40px;
+}
+ }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="main-section">
+     <div class="left-content">
+      <div class="section-left-one">
+        <p id="bill-p">Bill</p>
+      <i id="dollar-icon" class="bi bi-currency-dollar"></i>
+      <input id="dollar-input" placeholder="0">
+     </div>
+     <div class="section-left-two">
+      <div class="tip-select-section">
+        <p id="selected-tip"s> Select Tip %</p>
+        <div class="button-section-left">
+          <button id="button-5" value="5">5%</button>
+          <button id="button-10" value="10">10%</button>
+          <button id="button-15" value="15">15%</button>
+          <button id="button-25" value="25">25%</button>
+          <button id="button-50" value="50">50%</button>
+          <input id="custom-input" placeholder="Custom"> 
+        </div>
+      </div>
+    </div>
+    <div class="section-left-tree">
+      <p id="nr-people-p">Number of People</p>
+      <input id="people-input" placeholder="0"> 
+      <i id="person-icon" class="bi bi-person-fill"></i>
+    </div>   
+
+     </div>
+     <div class="right-content">
+      <div class="tip-amount">
+        <div class="tip-amount-p">
+          <p class="tip-p">Tip Amount</p>
+          <p class="person-p">/ person</p>
+        </div>
+        <p id="per-person" class="dollars">$0.00</p>
+      </div>
+      <div class="total-amount">
+        <div class="tip-amount-p">
+          <p class="tip-p">Total</p>
+          <p class="person-p">/ person</p>
+        </div>
+        <p id="total-tip" class="dollars">$0.00</p>
+     </div>
+     <div class="button-section">
+      <button id="reset-btn">Reset</button>
+    </div>
+    </div>
+    </section>
+  </main>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">JackTheFullDev</a>.
+
+  </div>
+  <script>
+
+const inputTip=document.getElementById("dollar-input");
+const inputCustom=document.getElementById("custom-input");
+const inputPeople=document.getElementById("people-input");
+const resetBtn=document.getElementById("reset-btn");
+const button5=document.getElementById("button-5");
+const button10=document.getElementById("button-10");
+const button15=document.getElementById("button-15");
+const button25=document.getElementById("button-25");
+const button50=document.getElementById("button-50");
+const tipAmountPerson=document.getElementById("per-person");
+const tipAmountTotal=document.getElementById("total-tip");
+
+resetBtn.disabled=true;
+
+button5.addEventListener("click",fivePercent);
+button10.addEventListener("click",tenPercent);
+button15.addEventListener("click",fifteenPercent);
+button25.addEventListener("click",twentyFivePercent);
+button50.addEventListener("click",fiftyPercent);
+inputCustom.addEventListener("input",customInput);
+inputPeople.addEventListener("input",enabledButton);
+inputCustom.addEventListener("input",enabledButton);
+resetBtn.addEventListener("click",resetData);
+
+
+
+function fivePercent()
+{
+  if(inputPeople.value===''||inputTip.value==='')
+  {
+    alert("input/s are empty");
+    btnDisabled();
+  }
+  else
+  {
+    let calculate=(inputTip.value*button5.value/100);
+    tipAmountTotal.textContent=calculate;
+    let resultPerPerson=calculate/inputPeople.value;
+    tipAmountPerson.textContent=resultPerPerson.toFixed(2);
+  }
+ 
+}
+function tenPercent()
+{
+  if(inputPeople.value===''||inputTip.value==='')
+  {
+    alert("input/s are empty");
+    btnDisabled();
+  }
+  else
+  {
+    let calculate=(inputTip.value*button10.value/100);
+    tipAmountTotal.textContent=calculate;
+    let resultPerPerson=calculate/inputPeople.value;
+    tipAmountPerson.textContent=resultPerPerson.toFixed(2);
+  }
+ 
+}
+function fifteenPercent()
+{
+  if(inputPeople.value===''||inputTip.value==='')
+  {
+    alert("input/s are empty");
+    btnDisabled();
+  }
+  else
+  {
+    let calculate=(inputTip.value*button15.value/100);
+    tipAmountTotal.textContent=calculate;
+    let resultPerPerson=calculate/inputPeople.value;
+    tipAmountPerson.textContent=resultPerPerson.toFixed(2);
+  }
+ 
+}
+function twentyFivePercent()
+{
+  if(inputPeople.value===''||inputTip.value==='')
+  {
+    alert("input/s are empty");
+    btnDisabled();
+  }
+  else
+  {
+    let calculate=(inputTip.value*button25.value/100);
+    tipAmountTotal.textContent=calculate;
+    let resultPerPerson=calculate/inputPeople.value;
+    tipAmountPerson.textContent=resultPerPerson.toFixed(2);
+  }
+ 
+}
+function fiftyPercent()
+{
+  if(inputPeople.value===''||inputTip.value==='')
+  {
+    alert("input/s are empty");
+    btnDisabled();
+  }
+  else
+  {
+    resetBtn.disabled=false;
+    let calculate=(inputTip.value*button50.value/100);
+    tipAmountTotal.textContent=calculate;
+    let resultPerPerson=calculate/inputPeople.value;
+    tipAmountPerson.textContent=resultPerPerson.toFixed(2);
+    
+  }
+ 
+}
+function customInput()
+{
+  if(inputPeople.value===''||inputTip.value==='')
+  {
+    btnDisabled();
+  }
+  else
+  {
+    let calculate=(inputTip.value*inputCustom.value/100);
+    tipAmountTotal.textContent=calculate;
+    let resultPerPerson=calculate/inputPeople.value;
+    tipAmountPerson.textContent=resultPerPerson.toFixed(2);
+    
+  }
+}
+
+function resetData()
+{
+  tipAmountPerson.textContent="$0.00";
+  tipAmountTotal.textContent="$0.00";
+  inputPeople.value='';
+  inputTip.value='';
+  inputCustom.value='';
+  btnDisabled();
+  
+}
+function enabledButton()
+{
+    resetBtn.disabled=false;
+    resetBtn.style.cursor="pointer"
+    resetBtn.style.background="hsl(172, 67%, 45%)"
+    resetBtn.style.color="hsl(183, 100%, 15%)"
+}
+function btnDisabled()
+{
+  resetBtn.disabled=true;
+  resetBtn.style.backgroundColor="hsl(183, 100%, 20%)";
+  resetBtn.style.backgroundColor= "--Dark--grayish--cyan";
+  resetBtn.cursor="default";
+   
+}
+
+  </script>
+</body>
+</html>
